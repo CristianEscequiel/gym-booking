@@ -1,12 +1,31 @@
 <div class="container">
-    @if($classList().length > 0) {
-    <ul>
-      @for(class of $classList(); track class.id) {
-        <li class="list-group-item">{{ class.className }}</li>
-        <a href="#" class="btn btn-link">ver detalles</a>
-      }
-    </ul>
-  }@else {
-    <p>No hay clases disponibles.</p>
+  <section class="classes">
+    <h2>Clases disponibles</h2>
+
+    @if ($classList().length > 0) {
+      <ul class="class-list">
+        @for (classItem of $classList(); track classItem.id) {
+          <li class="class-card">
+            <div>
+              <h3>{{ classItem.className }}</h3>
+              <p>{{ classItem.instructor }}</p>
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="showClassDetails(classItem.id)">
+              Ver detalles
+            </button>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="empty-message">No hay clases disponibles.</p>
+    }
+  </section>
+
+  @if ($classSelected()) {
+    <app-class-detail [class]="$classSelected()"></app-class-detail>
   }
 </div>
