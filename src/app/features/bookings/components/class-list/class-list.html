@@ -36,7 +36,7 @@
           <button
             type="button"
             class="btn btn-success"
-            (click)="reserveClass($classSelected()!.id)">
+            (click)="reserveClass($classSelected()!)">
             Confirmar reserva
           </button>
           <button
@@ -50,3 +50,11 @@
     }
   }
 </div>
+
+<app-feedback-modal
+  [isOpen]="showModal"
+  [title]="modalTitle"
+  [message]="modalMessage"
+  [type]="modalType"
+  (close)="closeFeedbackModal()">
+</app-feedback-modal>

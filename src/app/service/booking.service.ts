@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { delay, Observable, of } from "rxjs";
+import { delay, Observable, of, throwError } from "rxjs";
 import { Booking } from "../models/booking.model";
 
 @Injectable({ providedIn: 'root' })
@@ -11,4 +11,14 @@ export class BookingService {
       { id: 3, className: 'Spinning', instructor: 'Sofía Pérez', schedule: 'Miércoles 20:00', availableSpots: 0 },
     ]).pipe(delay(800));
   }
+  reserveBooking(booking: Booking): Observable<Booking> {
+  if (booking.availableSpots <= 0) {
+    return throwError(() => new Error('No hay vacantes disponibles'));
+  }
+  return of({
+    ...booking,
+    availableSpots: booking.availableSpots - 1
+  }).pipe(delay(500));
+}
+
 }

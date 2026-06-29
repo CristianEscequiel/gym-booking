@@ -1,0 +1,70 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .7);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999;
+}
+
+.modal {
+  width: 360px;
+  padding: 2rem;
+  background: #1c1c1c;
+  border-radius: 16px;
+  border: 1px solid #333;
+  color: #fff;
+  text-align: center;
+}
+
+.icon {
+  width: 70px;
+  height: 70px;
+
+  margin: 0 auto 1rem;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.success {
+  background: #0d5b28;
+  color: #7dff9f;
+}
+
+.error {
+  background: #651818;
+  color: #ff8f8f;
+}
+
+p {
+  margin: 1rem 0 2rem;
+  color: #d5d5d5;
+}
+
+.btn {
+  width: 100%;
+  padding: .8rem;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #ff8a00;
+  color: white;
+
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background: #ff9d2f;
+}

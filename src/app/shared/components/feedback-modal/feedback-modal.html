@@ -1,0 +1,28 @@
+@if (isOpen) {
+  <div class="overlay" (click)="onClose()">
+
+    <div class="modal" (click)="$event.stopPropagation()">
+
+      <div class="icon" [class.success]="type === 'success'"
+                       [class.error]="type === 'error'">
+
+        @if(type === 'success') {
+          ✓
+        } @else {
+          ✕
+        }
+
+      </div>
+
+      <h2>{{ title }}</h2>
+
+      <p>{{ message }}</p>
+
+      <button class="btn" (click)="onClose()">
+        Aceptar
+      </button>
+
+    </div>
+
+  </div>
+}
