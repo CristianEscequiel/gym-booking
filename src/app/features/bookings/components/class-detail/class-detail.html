@@ -1,4 +1,13 @@
 @if(classItem) {
   <h2>{{ classItem.className }}</h2>
   <p>Instructor: {{ classItem.instructor }}</p>
+  <p>Horario: {{ classItem.schedule }}</p>
+  <p>Plazas disponibles: {{ classItem.availableSpots }}</p>
+
+  <button
+    type="button"
+    class="btn btn-success"
+    (click)="reserveClass.emit(classItem.id)">
+    Reservar clase
+  </button>
 }

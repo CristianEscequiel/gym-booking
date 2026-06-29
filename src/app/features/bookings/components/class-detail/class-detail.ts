@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Booking } from '../../../../models/booking.model';
 
 @Component({
@@ -10,6 +10,6 @@ import { Booking } from '../../../../models/booking.model';
 export class ClassDetail {
 
   @Input() classItem : Booking | null = null;
-
+  @Output() reserveClass = new EventEmitter<number>();
 
 }

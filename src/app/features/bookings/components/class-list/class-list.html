@@ -1,6 +1,7 @@
 <div class="container">
+  <h2>Clases disponibles</h2>
+
   <section class="classes">
-    <h2>Clases disponibles</h2>
 
     @if ($classList().length > 0) {
       <ul class="class-list">
@@ -26,6 +27,26 @@
   </section>
 
   @if ($classSelected()) {
-    <app-class-detail [class]="$classSelected()"></app-class-detail>
+    <app-class-detail [classItem]="$classSelected()" (reserveClass)="openModalReserveClass($event)"></app-class-detail>
+    @if ($modalReserveClass()) {
+      <div class="modal">
+        <div class="modal-content">
+          <h3>Reserva de clase</h3>
+          <p>¿Estás seguro de que deseas reservar esta clase?</p>
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="reserveClass($classSelected()!.id)">
+            Confirmar reserva
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="$modalReserveClass.set(false)">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    }
   }
 </div>
