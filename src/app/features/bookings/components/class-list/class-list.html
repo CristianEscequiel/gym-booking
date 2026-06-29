@@ -1,0 +1,12 @@
+<div class="container">
+    @if($classList().length > 0) {
+    <ul>
+      @for(class of $classList(); track class.id) {
+        <li class="list-group-item">{{ class.className }}</li>
+        <a href="#" class="btn btn-link">ver detalles</a>
+      }
+    </ul>
+  }@else {
+    <p>No hay clases disponibles.</p>
+  }
+</div>

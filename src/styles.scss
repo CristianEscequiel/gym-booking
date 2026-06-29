@@ -1,1 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
+// Colores principales
+$color-primary: #ff7a00;      // Naranja
+$color-primary-hover: #ff932e;
+
+// Fondo
+$color-bg: #161616;
+$color-surface: #222222;
+$color-surface-light: #2d2d2d;
+
+// Texto
+$color-text: #f5f5f5;
+$color-text-secondary: #b5b5b5;
+
+// Estados
+$color-success: #3cb371;
+$color-error: #e74c3c;
+$color-border: #3a3a3a;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  background: $color-bg;
+  color: $color-text;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.container {
+  width: min(1200px, 90%);
+  margin: 0 auto;
+}
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: $color-text-secondary;
+}
+
+.text-muted {
+  color: $color-text-secondary;
+}
+
+.center {
+  text-align: center;
+}
+
