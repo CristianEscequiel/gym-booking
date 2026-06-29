@@ -30,25 +30,21 @@ Permitir al usuario:
 Se buscó mantener una separación clara de responsabilidades.
 
 ```
-src
-│
-├── components
-│   ├── booking-list
-│   ├── class-detail
-│   └── modal
-│
-├── models
-│   └── booking.model.ts
-│
-├── services
-│   ├── booking.service.ts
-│   ├── booking-validator.service.ts
-│   └── loading.service.ts
-│
-├── interceptors
-│   └── loading.interceptor.ts
-│
-└── app
+src/
+└── app/
+    ├── features/
+    │   └── bookings/
+    │       ├── components/
+    │       │   ├── class-list/
+    │       │   ├── class-detail/
+    │       ├── models/
+    │       │   └── booking.model.ts
+    │       └── service/
+    │           └── booking.service.ts
+    │
+    └── shared/
+        └── components/
+            └── feedback-modal/
 ```
 
 ---
