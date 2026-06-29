@@ -1,59 +1,196 @@
-# GymBooking
+# Gym Booking - Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.8.
+Prueba técnica desarrollada en Angular que simula un sistema de reservas de clases para un gimnasio.
 
-## Development server
+---
 
-To start a local development server, run:
+# Objetivo
+
+Permitir al usuario:
+
+- Visualizar las clases disponibles.
+- Seleccionar una clase.
+- Consultar el detalle de la clase.
+- Reservar un cupo (simulado).
+
+---
+
+# Tecnologías
+
+- Angular 20
+- TypeScript
+- RxJS
+- SCSS
+- Standalone Components
+
+---
+
+# Arquitectura
+
+Se buscó mantener una separación clara de responsabilidades.
+
+```
+src
+│
+├── components
+│   ├── booking-list
+│   ├── class-detail
+│   └── modal
+│
+├── models
+│   └── booking.model.ts
+│
+├── services
+│   ├── booking.service.ts
+│   ├── booking-validator.service.ts
+│   └── loading.service.ts
+│
+├── interceptors
+│   └── loading.interceptor.ts
+│
+└── app
+```
+
+---
+
+# Flujo de la aplicación
+
+1. La aplicación carga las clases disponibles.
+2. El usuario selecciona una clase.
+3. Se renderiza el componente de detalle.
+4. El usuario realiza la reserva.
+5. Se valida la disponibilidad.
+6. Se muestra un modal indicando éxito o error.
+
+---
+
+# Comunicación entre componentes
+
+Se decidió utilizar:
+
+- `@Input()` para recibir información.
+- `@Output()` para comunicar eventos al componente padre.
+
+Se evitó una comunicación innecesaria mediante servicios para mantener la simplicidad de la prueba.
+
+---
+
+# Manejo de datos
+
+El servicio actualmente retorna un Observable utilizando:
+
+```ts
+of(...).pipe(delay(...))
+```
+
+Esta decisión permite:
+
+- Simular una llamada HTTP.
+- Trabajar con RxJS.
+- Facilitar el reemplazo futuro por HttpClient sin modificar la lógica del componente.
+
+---
+
+# Manejo de estados
+
+Se contemplan los siguientes estados:
+
+- Success
+- Error
+
+El componente consume el servicio mediante:
+
+```ts
+subscribe({
+    next,
+    error
+})
+```
+
+permitiendo un manejo explícito de ambos escenarios.
+
+---
+
+# Validaciones
+
+Se incorporó un servicio de validación para centralizar la lógica de negocio.
+
+Actualmente contempla:
+
+- Disponibilidad de cupos.
+
+De esta manera el componente únicamente consume el resultado sin conocer la implementación.
+
+---
+
+
+# Componentes reutilizables
+
+Se desarrolló un componente Modal reutilizable utilizando:
+
+- `@Input()`
+- `@Output()`
+
+Permite mostrar:
+
+- mensajes de éxito
+- mensajes de error
+
+sin acoplarse a un caso de uso específico.
+
+---
+
+# UI
+
+Se optó por una interfaz inspirada en aplicaciones deportivas.
+
+Características:
+
+- Fondo oscuro.
+- Color principal naranja.
+- Diseño responsive mediante CSS Grid.
+- Componentes simples y reutilizables.
+- SCSS puro (sin frameworks CSS).
+
+---
+
+# Decisiones técnicas
+
+Durante el desarrollo se priorizó:
+
+- Tipado estricto.
+- Componentes pequeños.
+- Separación entre UI y lógica de negocio.
+- Servicios para encapsular la obtención y validación de datos.
+- Código fácilmente escalable hacia un backend real.
+
+No se incorporó un gestor de estado global ya que el alcance de la prueba no lo requiere.
+
+---
+
+
+# Instalación
+
+```bash
+npm install
+```
+
+---
+
+# Ejecutar
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Abrir:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+# Consideraciones
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+El objetivo principal fue desarrollar una solución clara, mantenible y alineada con buenas prácticas de Angular, priorizando una arquitectura simple y escalable por sobre la incorporación de funcionalidades innecesarias para el alcance de la prueba.
